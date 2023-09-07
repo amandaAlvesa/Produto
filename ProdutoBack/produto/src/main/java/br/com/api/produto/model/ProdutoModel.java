@@ -11,14 +11,16 @@ import lombok.Setter;
 @Setter
 @Getter
 @Entity
-@Table(name = "itensProdutos")
+@Table(name = "produtos")
 public class ProdutoModel {
+	
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long codigo;
+	private Long id;
+	
 	private String name;
 	private String marca;
-	private Double price;
+	private String preco;
 	
 }

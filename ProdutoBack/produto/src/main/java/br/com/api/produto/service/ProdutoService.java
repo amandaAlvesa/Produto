@@ -1,5 +1,6 @@
 package br.com.api.produto.service;
 
+import java.math.BigDecimal;
 import java.sql.PseudoColumnUsage;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,11 +27,11 @@ public class ProdutoService {
 		if (produto.getName().equals("")) {
 			rm.setMensagem("Adicione o Nome!");
 			return new ResponseEntity<ResponseModel>(rm, HttpStatus.BAD_REQUEST);
-		} else if (produto.getMarca().equals("")) {
-			rm.setMensagem("Adicione a Marca!");
-			return new ResponseEntity<ResponseModel>(rm, HttpStatus.BAD_REQUEST);
-		} else if (produto.getPrice().equals("")) {
+		}else if (produto.getPreco().equals("")) {
 			rm.setMensagem("Adicione o Preco!");
+			return new ResponseEntity<ResponseModel>(rm, HttpStatus.BAD_REQUEST);
+		}  else if (produto.getMarca().equals("")) {
+			rm.setMensagem("Adicione a Marca!");
 			return new ResponseEntity<ResponseModel>(rm, HttpStatus.BAD_REQUEST);
 		} else {
 			return new ResponseEntity<ProdutoModel>(pr.save(produto) , HttpStatus.CREATED);
