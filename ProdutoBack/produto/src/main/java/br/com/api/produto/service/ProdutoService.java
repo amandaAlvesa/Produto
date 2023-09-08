@@ -22,8 +22,7 @@ public class ProdutoService {
 	private ResponseModel rm;
 
 	// add produtos
-	public ResponseEntity<?> cadastrar(ProdutoModel produto) {
-
+	public ResponseEntity<?> cadastrarAlterar(ProdutoModel produto, String acao) {
 		if (produto.getName().equals("")) {
 			rm.setMensagem("Adicione o Nome!");
 			return new ResponseEntity<ResponseModel>(rm, HttpStatus.BAD_REQUEST);
@@ -33,13 +32,22 @@ public class ProdutoService {
 		}  else if (produto.getMarca().equals("")) {
 			rm.setMensagem("Adicione a Marca!");
 			return new ResponseEntity<ResponseModel>(rm, HttpStatus.BAD_REQUEST);
-		} else {
+		} else if(acao.equals("cadastrar")) {
 			return new ResponseEntity<ProdutoModel>(pr.save(produto) , HttpStatus.CREATED);
+		}else {
+			return new ResponseEntity<ProdutoModel>(pr.save(produto), HttpStatus.OK);
 		}
 	}
 
 	// método para listar todos os produtos
 	public Iterable<ProdutoModel> listar() {
 		return pr.findAll();
+	}
+	
+	//remover
+	public ResponseEntity<ResponseModel>remover(Long codigo){
+		rm.setMensagem("Produto Deletado");
+		pr.deleteById(codigo);
+		return new ResponseEntity<ResponseModel>(rm, HttpStatus.OK);
 	}
 }
