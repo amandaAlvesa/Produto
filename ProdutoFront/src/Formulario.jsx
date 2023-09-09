@@ -1,14 +1,21 @@
-function Formulario(){
+function Formulario({botao, eventoTeclado}){
     return(
-        <form>
-            <input type="text" placeholder="Nome"/>
-            <input type="text" placeholder="Marca"/>
-            <input type="text" placeholder="Preço"/>
+        <form> 
+            <input type="text" onChange={eventoTeclado} name="name" placeholder="Nome" className="form-control"/>
+            <input type="text" onChange={eventoTeclado} name="marca" placeholder="Marca" className="form-control"/>
+            <input type="text" onChange={eventoTeclado} name="preco" placeholder="Preço" className="form-control"/>
 
-            <input type="button" value="Cadastrar"/>
-            <input type="button" value="Cancelar"/>
-            <input type="button" value="Excluir"/>
-            <input type="button" value="Alterar"/>
+            {
+                botao
+                ?                
+                <input type="button" value="Cadastrar" className="btn btn-primary"/>
+                :
+                <div> 
+                    <input type="button" value="Cancelar" className="btn btn-warning"/>
+                    <input type="button" value="Alterar" className="btn btn-secondary"/>
+                    <input type="button" value="Excluir" className="btn btn-danger"/>
+                </div>    
+            }
         </form>
     )    
 }
